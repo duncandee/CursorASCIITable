@@ -39,7 +39,7 @@ public class CursorASCIITable {
             int limitCount = limitToCols == null ? c.getColumnCount() : limitToCols.length;
 
             String[] header = new String[limitCount];
-            String[][] data = new String[limitCount][c.getCount()];
+            String[][] data = new String[c.getCount()][limitCount];
 
             if (limitToCols == null) {
                 for (int i = 0; i < c.getColumnCount(); i++) {
@@ -56,11 +56,11 @@ public class CursorASCIITable {
                     if (limitToCols == null) {
 
                         for (int i = 0; i < c.getColumnCount(); i++) {
-                            data[i][count] = c.getString(count);
+                            data[count][i] = c.getString(i);
                         }
                     } else {
                         for (int i = 0; i < limitToCols.length; i++) {
-                            data[i][count] = c.getString(c.getColumnIndex(limitToCols[i]));
+                            data[count][i] = c.getString(c.getColumnIndex(limitToCols[i]));
                         }
                     }
                     count++;
